@@ -13,9 +13,9 @@ public class BeatCubeBehaviour : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        transform.Translate(Vector3.back*Time.deltaTime*speed);
+        transform.Translate(Vector3.back*Time.fixedDeltaTime*speed);
     }
     private void OnTriggerEnter(Collider other)
     {

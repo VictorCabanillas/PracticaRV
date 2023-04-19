@@ -4,6 +4,7 @@ using UnityEngine;
 [System.Serializable]
 public class SpawningInfo
 {
+    public int Id;
     public int timeToSpawn;
     public int rotationSegment;
     public string spawnSide;
