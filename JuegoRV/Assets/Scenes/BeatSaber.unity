@@ -255,28 +255,10 @@ MonoBehaviour:
   spawnerRojo: {fileID: 2126313277}
   spawnerAzul: {fileID: 531568011}
   beatCube: {fileID: 1403899389808966972, guid: 9ddab2f6f2628ed43b425bb4bf8ed172, type: 3}
-  spawningQueue:
-  - Id: 0
-    timeToSpawn: 2
-    rotationSegment: 1
-    spawnSide: Red
-  - Id: 0
-    timeToSpawn: 3
-    rotationSegment: 2
-    spawnSide: Blue
-  - Id: 0
-    timeToSpawn: 4
-    rotationSegment: 5
-    spawnSide: Blue
-  - Id: 0
-    timeToSpawn: 5
-    rotationSegment: 4
-    spawnSide: Red
-  - Id: 0
-    timeToSpawn: 6
-    rotationSegment: 7
-    spawnSide: Blue
+  spawningQueue: []
   audioPlayer: {fileID: 1529601209}
+  cubeRecording:
+    list: []
 --- !u!1 &245701977
 GameObject:
   m_ObjectHideFlags: 0
