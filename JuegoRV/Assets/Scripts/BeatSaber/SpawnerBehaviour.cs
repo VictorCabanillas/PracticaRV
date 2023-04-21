@@ -9,6 +9,7 @@ public class SpawnerBehaviour : MonoBehaviour
     public Transform spawnerAzul;
     public GameObject beatCube;
     public List<SpawningInfo> spawningQueue;
+    private ObjectPool cubePool;
 
     
     public AudioSource audioPlayer;
@@ -23,6 +24,7 @@ public class SpawnerBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        cubePool = new ObjectPool(beatCube.GetComponent<BeatCubeBehaviour>(),10,true);
         DirectoryInfo SoundsDir = new DirectoryInfo(Application.streamingAssetsPath + "/Sounds"); //Saco la ruta de donde estan los archivos
         FileInfo[] info = SoundsDir.GetFiles("*.mp3"); //Saco todos los archivos .mp3 a un array
         
@@ -66,6 +68,7 @@ public class SpawnerBehaviour : MonoBehaviour
         audioClip = request.GetAudioClip();  //Transformo el archivo a un audioClip
         audioClip.name = randomSong; //Le asigno un nombre (no es necesario)
         audioPlayer.clip = audioClip; //Cargo el clip al audioPlayer
+        yield return new WaitForSecondsRealtime(4f);
         audioPlayer.Play(); //le doy al play
     }
     private WWW GetAudioFromFile(string path) 
@@ -82,16 +85,20 @@ public class SpawnerBehaviour : MonoBehaviour
         {
             if (Time.timeSinceLevelLoad >= spawningQueue[0].timeToSpawn)
             {
-                    GameObject spawnedCube;
+                    BeatCubeBehaviour spawnedCube;
                     if (spawningQueue[0].spawnSide == "Red")
                     {
-                        spawnedCube = Instantiate(beatCube, spawnerRojo);
+                        spawnedCube = (BeatCubeBehaviour)cubePool.Get();
+                        spawnedCube.pool = cubePool;
+                        spawnedCube.gameObject.transform.position = spawnerRojo.position;
                         spawnedCube.GetComponent<BeatCubeBehaviour>().color = Color.red;
                     }
                     else
                     {
-                        spawnedCube = Instantiate(beatCube, spawnerAzul);
-                        spawnedCube.GetComponent<BeatCubeBehaviour>().color = Color.blue;
+                    spawnedCube = (BeatCubeBehaviour)cubePool.Get();
+                    spawnedCube.pool = cubePool;
+                    spawnedCube.gameObject.transform.position = spawnerAzul.position;
+                    spawnedCube.GetComponent<BeatCubeBehaviour>().color = Color.blue;
                     }
                     spawnedCube.transform.Rotate(0, 0, 45 * spawningQueue[0].rotationSegment);
                     spawningQueue.RemoveAt(0);
@@ -104,14 +111,14 @@ public class SpawnerBehaviour : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.A)) 
         {
-            float tiempo = (float)System.Math.Round((Time.timeSinceLevelLoad - (System.Math.Abs(-10 + spawnerAzul.transform.position.z) / beatCube.GetComponent<BeatCubeBehaviour>().speed)), 2);
+            float tiempo = (float)System.Math.Round((Time.timeSinceLevelLoad - (System.Math.Abs(10 + spawnerAzul.transform.position.z) / beatCube.GetComponent<BeatCubeBehaviour>().speed)), 2);
             SpawningInfo spawnInfo = new SpawningInfo(count, tiempo, Random.Range(0, 8), "Red");
             count += 1;
             cubeRecording.list.Add(spawnInfo);
         }
         if (Input.GetKeyDown(KeyCode.D)) 
         {
-            float tiempo = (float)System.Math.Round((Time.timeSinceLevelLoad - (System.Math.Abs(-10 + spawnerAzul.transform.position.z) / beatCube.GetComponent<BeatCubeBehaviour>().speed)), 2);
+            float tiempo = (float)System.Math.Round((Time.timeSinceLevelLoad - (System.Math.Abs(10 + spawnerAzul.transform.position.z) / beatCube.GetComponent<BeatCubeBehaviour>().speed)), 2);
             Debug.Log(tiempo);
             SpawningInfo spawnInfo = new SpawningInfo(count, tiempo, Random.Range(0, 8), "Blue");
             Debug.Log(spawnInfo.timeToSpawn);

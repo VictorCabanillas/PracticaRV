@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BeatCubeBehaviour : MonoBehaviour
+public class BeatCubeBehaviour : MonoBehaviour,IPooledObject
 {
+
     public int speed = 10;
     public Color color { get; set; }
+    public bool Active { get { return gameObject.activeSelf; } set {gameObject.SetActive(value); } }
+    public IPool pool;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +25,19 @@ public class BeatCubeBehaviour : MonoBehaviour
     {
         if (other.CompareTag("FailZone"))
         {
-                Destroy(gameObject);
+            pool?.Release(this);
         }
+    }
+
+    public IPooledObject Clone()
+    {
+        GameObject newObject = Instantiate(gameObject);
+        BeatCubeBehaviour beatCube = newObject.GetComponent<BeatCubeBehaviour>();
+        return beatCube;
+    }
+
+    public void Reset()
+    {
+        transform.position = new Vector3(20,0,0);
     }
 }
