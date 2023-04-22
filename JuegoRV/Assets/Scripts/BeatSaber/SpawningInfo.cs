@@ -22,5 +22,5 @@ public class SpawningInfo
 [System.Serializable]
 public class SpawningInfoList 
 {
-    public List<SpawningInfo> list;
+    public List<SpawningInfo> list = new List<SpawningInfo>();
 }

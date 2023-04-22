@@ -6,14 +6,13 @@ public class BeatCubeBehaviour : MonoBehaviour,IPooledObject
 {
 
     public int speed = 10;
-    public Color color { get; set; }
     public bool Active { get { return gameObject.activeSelf; } set {gameObject.SetActive(value); } }
     public IPool pool;
 
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<Renderer>().material.color = color;
+        
     }
 
     // Update is called once per frame
@@ -23,6 +22,10 @@ public class BeatCubeBehaviour : MonoBehaviour,IPooledObject
     }
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Saber"))
+        {
+            pool?.Release(this);
+        }
         if (other.CompareTag("FailZone"))
         {
             pool?.Release(this);
