@@ -103,7 +103,7 @@ public class Recorder : MonoBehaviour
 
     void writeCube(int rotSegment,string side) 
     {
-        float tiempo = (float)System.Math.Round((Time.timeSinceLevelLoad - (System.Math.Abs(10 + spawnerAzul.transform.position.z) / beatCube.GetComponent<BeatCubeBehaviour>().speed)), 2);
+        float tiempo = (float)System.Math.Round((Time.timeSinceLevelLoad - (spawnerAzul.transform.position.z / beatCube.GetComponent<BeatCubeBehaviour>().speed)), 2);
         SpawningInfo spawnInfo = new SpawningInfo(count, tiempo, rotSegment, side);
         count += 1;
         cubeRecording.list.Add(spawnInfo);
