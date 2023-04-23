@@ -18,7 +18,8 @@ public class Recorder : MonoBehaviour
     private InputAction rightAction;
     [Space] [SerializeField] private InputActionAsset myActionsAsset;
 
-    private bool allowCube = true;
+    private bool allowCubeR = true;
+    private bool allowCubeL = true;
 
     // Start is called before the first frame update
     void Start()
@@ -35,17 +36,22 @@ public class Recorder : MonoBehaviour
 
     void LeftContol(InputAction.CallbackContext context)
     {
-        calculateRot(context, "Red");
+        if (allowCubeL)
+        {
+            allowCubeL = false;
+            calculateRot(context, "Red");
+        }
     }
-    void RightControl(InputAction.CallbackContext context) 
+    void RightControl(InputAction.CallbackContext context)
     {
-        calculateRot(context, "Blue");
+        if (allowCubeR)
+        {
+            allowCubeR = false;
+            calculateRot(context, "Blue");
+        }
     }
     void calculateRot(InputAction.CallbackContext context, string side)
     {
-        if (allowCube)
-        {
-            allowCube = false;
             Debug.Log(context.ReadValue<Vector2>());
             int rotSegment = 0;
             if (context.ReadValue<Vector2>().x > 0.5f)
@@ -90,15 +96,22 @@ public class Recorder : MonoBehaviour
                 }
             }
 
-            StartCoroutine(cooldown());
+            StartCoroutine(cooldown(side));
             writeCube(rotSegment, side);
-        }
+        
     }
 
-    IEnumerator cooldown() 
+    IEnumerator cooldown(string side) 
     {
         yield return new WaitForSecondsRealtime(0.5f);
-        allowCube = true;
+        if (side == "Red")
+        {
+            allowCubeL = true;
+        }
+        else
+        {
+            allowCubeR = true;
+        }
     }
 
     void writeCube(int rotSegment,string side) 

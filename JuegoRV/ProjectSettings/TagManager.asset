@@ -6,6 +6,8 @@ TagManager:
   tags:
   - FailZone
   - Saber
+  - combo
+  - score
   layers:
   - Default
   - TransparentFX

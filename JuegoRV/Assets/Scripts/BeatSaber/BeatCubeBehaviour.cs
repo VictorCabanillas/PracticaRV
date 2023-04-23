@@ -5,14 +5,16 @@ using UnityEngine;
 public class BeatCubeBehaviour : MonoBehaviour,IPooledObject
 {
 
-    public int speed = 10;
+    public float speed = 10;
     public bool Active { get { return gameObject.activeSelf; } set {gameObject.SetActive(value); } }
     public IPool pool;
+
+    ComboBehaviour combo;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        combo = GameObject.FindGameObjectWithTag("combo").GetComponent<ComboBehaviour>();
     }
 
     // Update is called once per frame
@@ -24,10 +26,12 @@ public class BeatCubeBehaviour : MonoBehaviour,IPooledObject
     {
         if (other.CompareTag("Saber"))
         {
+            combo.addCombo();
             pool?.Release(this);
         }
         if (other.CompareTag("FailZone"))
         {
+            combo.resetCombo();
             pool?.Release(this);
         }
     }
