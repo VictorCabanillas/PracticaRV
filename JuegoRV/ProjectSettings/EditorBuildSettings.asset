@@ -4,7 +4,13 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/BeatSaber/SongSelector.unity
+    guid: ccbcce84f67e7134d953e4fe7fa74943
+  - enabled: 1
+    path: Assets/Scenes/BeatSaber/BeatSaber.unity
+    guid: 6a29046cb41dfd24d9d00687ab6eaed9
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: dea886957e042424790e5f3b50797ff7, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: c7c9bd70b4abfb544b37402434c0813d, type: 2}

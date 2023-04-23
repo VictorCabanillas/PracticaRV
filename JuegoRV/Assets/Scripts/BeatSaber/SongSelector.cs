@@ -2,30 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using TMPro;
 
 public class SongSelector : MonoBehaviour
 {
-    List<string> names = new List<string>();
-    private string selectedSong;
+    private TMP_Dropdown desplegable;
+    FileInfo[] info;
     // Start is called before the first frame update
     void Awake()
     {
+        desplegable = GetComponent<TMP_Dropdown>();
         DirectoryInfo SoundsDir = new DirectoryInfo(Application.streamingAssetsPath + "/Sounds"); //Saco la ruta de donde estan los archivos
-        FileInfo[] info = SoundsDir.GetFiles("*.mp3"); //Saco todos los archivos .mp3 a un array
+        info = SoundsDir.GetFiles("*.mp3"); //Saco todos los archivos .mp3 a un array
+    }
 
+    private void Start()
+    {
         foreach (FileInfo f in info)
         {
-            names.Add(Path.GetFileNameWithoutExtension(f.Name)); //Muestro y guardo los nombres sin la extension en una lista
+            desplegable.options.Add(new TMP_Dropdown.OptionData(Path.GetFileNameWithoutExtension(f.Name))); //Muestro y guardo los nombres sin la extension en una lista
         }
-        selectedSong = names[1]; //Elijo una cancion aleatoria
-
-        PlayerPrefs.SetString("selectedSong", selectedSong);
+        PlayerPrefs.SetString("selectedSong", desplegable.options[desplegable.value].text);
+        desplegable.onValueChanged.AddListener(delegate { DropdownValueChanged(desplegable); }); //Elijo una cancion aleatoria
     }
 
-    // Update is called once per frame
-    void Update()
+    void DropdownValueChanged(TMP_Dropdown change) 
     {
-        
+        PlayerPrefs.SetString("selectedSong", desplegable.options[desplegable.value].text);
     }
-
 }
