@@ -53,16 +53,17 @@ public class Arma : MonoBehaviour
 
     protected virtual void EmpezarDisparo(BaseInteractionEventArgs interactor)
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
     }
 
     protected virtual void PararDisparo(BaseInteractionEventArgs interactor)
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
     }
 
     protected virtual void Disparar()
     {
+        Console.WriteLine("DISPARO SE EJECUTA EN ARMA");
         AplicarRetroceso();
     }
 
@@ -71,6 +72,7 @@ public class Arma : MonoBehaviour
     private void AplicarRetroceso()
     {
         rigiBody.AddRelativeForce(Vector3.back * fuerzaRetroceso, ForceMode.Impulse);
+        Console.WriteLine("RETROCESO");
     }
 
     public float GetFuerzaDisparo()
