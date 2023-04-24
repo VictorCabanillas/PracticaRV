@@ -8,6 +8,8 @@ TagManager:
   - Saber
   - combo
   - score
+  - leftControler
+  - rightControler
   layers:
   - Default
   - TransparentFX

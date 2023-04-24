@@ -112,6 +112,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2.5
+  cutForce: 2000
+  redMaterial: {fileID: 2100000, guid: 7c26c5b59210beb43bb0660c46f9e532, type: 2}
+  blueMaterial: {fileID: 2100000, guid: 145d5a1a8ca547a46a673ba491565bcb, type: 2}
 --- !u!1001 &5476758042318109752
 PrefabInstance:
   m_ObjectHideFlags: 0

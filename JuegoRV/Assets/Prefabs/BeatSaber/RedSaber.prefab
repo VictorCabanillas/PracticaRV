@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 3561074268231010739}
   - component: {fileID: 1672551440551830817}
   - component: {fileID: -4066803949024880216}
+  - component: {fileID: -8831992735099624202}
   m_Layer: 0
   m_Name: RedSaber
   m_TagString: Saber
@@ -149,6 +150,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-8831992735099624202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4188535126126351113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adea4a4ecefe2d842be828aeec6840d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocityAverageFrames: 5
+  angularVelocityAverageFrames: 11
+  estimateOnAwake: 1
 --- !u!1 &6174098150727692337
 GameObject:
   m_ObjectHideFlags: 0
