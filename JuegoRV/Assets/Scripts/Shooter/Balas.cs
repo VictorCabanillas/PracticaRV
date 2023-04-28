@@ -15,4 +15,15 @@ public class Balas : MonoBehaviour
     {
 
     }
+
+    
+    public void Golpear(Collider other)
+    {
+        var diana = other.GetComponent<Diana>();
+        if (diana)
+        {
+            diana.Golpear();
+        }
+    }
+
 }

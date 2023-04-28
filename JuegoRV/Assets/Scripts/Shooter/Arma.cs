@@ -39,7 +39,7 @@ public class Arma : MonoBehaviour
     {
         if (args.interactorObject is XRBaseControllerInteractor interactor)
         {
-            interactor.GetComponent<EsconderMano>().Esconder();
+           //interactor.GetComponent<EsconderMano>().Esconder();
         }
     }
 
@@ -47,7 +47,7 @@ public class Arma : MonoBehaviour
     {
         if (args.interactorObject is XRBaseControllerInteractor interactor)
         {
-            interactor.GetComponent<EsconderMano>().Mostrar();
+            //interactor.GetComponent<EsconderMano>().Mostrar();
         }
     }
 
@@ -63,7 +63,6 @@ public class Arma : MonoBehaviour
 
     protected virtual void Disparar()
     {
-        Console.WriteLine("DISPARO SE EJECUTA EN ARMA");
         AplicarRetroceso();
     }
 
@@ -72,7 +71,6 @@ public class Arma : MonoBehaviour
     private void AplicarRetroceso()
     {
         rigiBody.AddRelativeForce(Vector3.back * fuerzaRetroceso, ForceMode.Impulse);
-        Console.WriteLine("RETROCESO");
     }
 
     public float GetFuerzaDisparo()

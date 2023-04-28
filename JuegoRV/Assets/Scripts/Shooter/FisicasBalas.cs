@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody))]
 
@@ -9,6 +10,7 @@ public class FisicasBalas : Balas
 
     [SerializeField] private float tiempoBalas; //Tiempo en que las balas van a estar (tras ello despawnean)
     private Rigidbody rigiBody;
+    public UnityEvent OnGolpear;
 
     private void Awake()
     {
@@ -30,6 +32,8 @@ public class FisicasBalas : Balas
     //En caso de colision de la bala con algún collider establecido como pueden ser los enemigos, el objeto se destruye
     private void OnTriggerEnter(Collider other)
     {
+        var bala = GetComponent<Balas>();
+        bala.Golpear(other);
         Destroy(gameObject);
         IRecibeDano[] recibeDaño = other.GetComponentsInChildren<IRecibeDano>();
 
