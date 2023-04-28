@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SongPlayer : MonoBehaviour
 {
     private AudioSource audioPlayer;
     private AudioClip audioClip;
     private string selectedSong;
+    private bool hasEnded = false;
 
     // Start is called before the first frame update
     void Start()
@@ -14,6 +16,10 @@ public class SongPlayer : MonoBehaviour
         selectedSong = PlayerPrefs.GetString("selectedSong");
         audioPlayer = GetComponent<AudioSource>();
         StartCoroutine(LoadAudio()); //Pido que se reproduzca la cancion elegida
+    }
+    private void Update()
+    {
+        if (!audioPlayer.isPlaying && hasEnded) { SceneManager.LoadScene("SongSelector"); }
     }
     private WWW GetAudioFromFile(string path)
     {
@@ -32,5 +38,6 @@ public class SongPlayer : MonoBehaviour
         audioPlayer.clip = audioClip; //Cargo el clip al audioPlayer
         yield return new WaitForSecondsRealtime(4f);
         audioPlayer.Play(); //le doy al play
+        hasEnded = true;
     }
 }
