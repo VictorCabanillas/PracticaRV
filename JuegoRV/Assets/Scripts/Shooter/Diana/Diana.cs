@@ -19,9 +19,13 @@ public class Diana : MonoBehaviour
     {
         Activada = false;
         OnDesactivar.Invoke();
+
         var dianaManger = FindObjectOfType<DianaManager>();
         dianaManger.dianasActivas.Remove(this);
         dianaManger.dianasDesactivadas.Add(this);
+
+        var score = FindObjectOfType<Score>();
+        score.SubirContador();
     }
 
     public void Golpear()
