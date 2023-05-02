@@ -8,7 +8,6 @@ public class SongPlayer : MonoBehaviour
     private AudioSource audioPlayer;
     private AudioClip audioClip;
     private string selectedSong;
-    private bool hasEnded = false;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +18,6 @@ public class SongPlayer : MonoBehaviour
     }
     private void Update()
     {
-        if (!audioPlayer.isPlaying && hasEnded) { SceneManager.LoadScene("SongSelector"); }
     }
     private WWW GetAudioFromFile(string path)
     {
@@ -38,6 +36,12 @@ public class SongPlayer : MonoBehaviour
         audioPlayer.clip = audioClip; //Cargo el clip al audioPlayer
         yield return new WaitForSecondsRealtime(4f);
         audioPlayer.Play(); //le doy al play
-        hasEnded = true;
+        StartCoroutine(endRound());
+    }
+
+    private IEnumerator endRound() 
+    {
+        yield return new WaitForSecondsRealtime(audioPlayer.clip.length+3);
+        SceneManager.LoadScene("SongSelector");
     }
 }

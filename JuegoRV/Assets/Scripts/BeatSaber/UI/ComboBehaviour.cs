@@ -13,6 +13,7 @@ public class ComboBehaviour : MonoBehaviour
     int multiplyer=1;
     private void Start()
     {
+        PlayerPrefs.SetInt("highestCombo", 0);
         text = GetComponent<TextMeshProUGUI>();
         score = GameObject.FindGameObjectWithTag("score").GetComponent<ScoreBehaviour>();
         multiplyerText = multiplyerGO.GetComponent<TextMeshProUGUI>();
@@ -25,6 +26,7 @@ public class ComboBehaviour : MonoBehaviour
         multiplyerText.text = "x"+ multiplyer.ToString();
         score.UpdateScore(100*multiplyer);
         text.text = combo.ToString();
+        if (PlayerPrefs.GetInt("highestCombo") < combo) { PlayerPrefs.SetInt("highestCombo", combo); }
     }
     public void resetCombo()
     {

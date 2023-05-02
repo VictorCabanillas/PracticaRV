@@ -9,11 +9,13 @@ public class ScoreBehaviour : MonoBehaviour
     int score = 0;
     private void Start()
     {
+        PlayerPrefs.SetInt("Score", 0);
         text = GetComponent<TextMeshProUGUI>();
     }
     public void UpdateScore(int data)
     {
         score += data;
         text.text = score.ToString();
+        PlayerPrefs.SetInt("Score", score);
     }
 }

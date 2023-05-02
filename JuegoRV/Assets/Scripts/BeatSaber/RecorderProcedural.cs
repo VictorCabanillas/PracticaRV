@@ -23,6 +23,8 @@ public class RecorderProcedural : MonoBehaviour
     private bool allowCubeR = true;
     private bool allowCubeL = true;
 
+    public float recordingThreshold = 0.65f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,8 +41,8 @@ public class RecorderProcedural : MonoBehaviour
         yield return new WaitForSecondsRealtime(1f);
         //Debug.Log(audioInput.GetAmplitude());
         Debug.Log(audioInput.GetFreqBand(2));
-        //if (audioInput.GetAmplitude() > 0.65f)
-        if (audioInput.GetFreqBand(2)>0.65f)
+        //if (audioInput.GetAmplitude() > recordingThreshold)
+        if (audioInput.GetFreqBand(2)>recordingThreshold)
         {
             calculateSide(Random.Range(0, 10)%2 == 0 ? "Red" : "Blue");
         }
