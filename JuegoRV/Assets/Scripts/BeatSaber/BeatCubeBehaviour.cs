@@ -42,8 +42,9 @@ public class BeatCubeBehaviour : MonoBehaviour,IPooledObject
     {
         if (other.CompareTag("Saber"))
         {
-            startSlicePoint = other.transform.position;
-            endSlicePoint = (-other.transform.right)*10;
+            startSlicePoint = other.GetComponent<SaberInfo>().startPoint.position;
+            Debug.Log(startSlicePoint);
+            //endSlicePoint = (-other.transform.right)*10;
             velocityEstimator = other.GetComponent<VelocityEstimator>();
         }
         if (other.CompareTag("FailZone"))
@@ -57,6 +58,7 @@ public class BeatCubeBehaviour : MonoBehaviour,IPooledObject
     {
         if (other.CompareTag("Saber"))
         {
+            endSlicePoint = other.GetComponent<SaberInfo>().endPoint.position;
             combo.addCombo();
             Slice(gameObject);
         }

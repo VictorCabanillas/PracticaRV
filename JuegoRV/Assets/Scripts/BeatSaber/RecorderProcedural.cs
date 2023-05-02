@@ -40,7 +40,7 @@ public class RecorderProcedural : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(1f);
         //Debug.Log(audioInput.GetAmplitude());
-        Debug.Log(audioInput.GetFreqBand(2));
+        //Debug.Log(audioInput.GetFreqBand(2));
         //if (audioInput.GetAmplitude() > recordingThreshold)
         if (audioInput.GetFreqBand(2)>recordingThreshold)
         {

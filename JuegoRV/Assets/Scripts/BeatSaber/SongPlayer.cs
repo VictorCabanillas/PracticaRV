@@ -42,6 +42,6 @@ public class SongPlayer : MonoBehaviour
     private IEnumerator endRound() 
     {
         yield return new WaitForSecondsRealtime(audioPlayer.clip.length+3);
-        SceneManager.LoadScene("SongSelector");
+        SceneManager.LoadScene("EndScreen");
     }
 }
