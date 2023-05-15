@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Game
   m_RootView: {fileID: 4}
   m_MinSize: {x: 875, y: 350}
   m_MaxSize: {x: 10000, y: 10000}
@@ -73,7 +73,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 1
-  controlID: 27
+  controlID: 109
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 28
+  controlID: 110
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -548,9 +548,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 44670000
-      m_LastClickedID: 0
-      m_ExpandedIDs: f8e3ffffc0e5ffff46e6ffff0ee9ffff32fbffffe0640000f6640000
+      m_SelectedIDs: e8620000f6640000
+      m_LastClickedID: 25846
+      m_ExpandedIDs: 32fbffff62630000d6630000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -881,13 +881,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.03499152, y: -0.9589422, z: 0.24690181, w: 0.13581379}
+    m_Target: {x: 0.031466473, y: -0.9530948, z: 0.10622349, w: 0.28202486}
     speed: 2
-    m_Value: {x: 0.035358295, y: -0.95864135, z: 0.24682432, w: 0.13723831}
+    m_Value: {x: 0.031463306, y: -0.9529989, z: 0.1062128, w: 0.2819965}
   m_Size:
     m_Target: 11.272962
     speed: 2
-    m_Value: 10.787523
+    m_Value: 11.272962
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -953,22 +953,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes/Shooter
+    - Assets/Scripts/MainMenus
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes/Shooter
+  - Assets/Scripts/MainMenus
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Usuario\Documents\GitHub\PracticaRV\JuegoRV
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 11}
-    m_SelectedIDs: be7a0000
-    m_LastClickedID: 31422
-    m_ExpandedIDs: 00000000fc670000006800000268000006680000086800002e68000000ca9a3b
+    scrollPos: {x: 0, y: 43}
+    m_SelectedIDs: 8a710000
+    m_LastClickedID: 29066
+    m_ExpandedIDs: 00000000fc670000fe670000006800000268000004680000266800002868000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -996,7 +996,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000fc670000fe6700000068000002680000046800000668000008680000
+    m_ExpandedIDs: 00000000fc670000fe670000006800000268000004680000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
