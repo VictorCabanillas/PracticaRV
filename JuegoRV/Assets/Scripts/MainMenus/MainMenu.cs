@@ -10,6 +10,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] XROrigin XRUI;
     [SerializeField] Canvas canvas;
     
+
     public void EscenaShooter()
     {
         SceneManager.LoadScene("Shooter");

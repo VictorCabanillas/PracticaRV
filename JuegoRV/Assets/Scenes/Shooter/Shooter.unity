@@ -538,6 +538,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   XRShooter: {fileID: 1085737889}
   record: {fileID: 362070222}
+  diana: {fileID: 335870866}
 --- !u!4 &28961209
 Transform:
   m_ObjectHideFlags: 0
@@ -2217,7 +2218,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &335870866
 MonoBehaviour:
   m_ObjectHideFlags: 0
