@@ -7,17 +7,17 @@ using UnityEngine;
 public class Score : MonoBehaviour
 {
     [SerializeField] TextMeshPro dianasAcertadas;
-    int score = 0;
+    public int score = 0;
 
     private void Awake()
     {
-        dianasAcertadas.text = "Dianas acertadas " + score;
+        dianasAcertadas.text = "Aciertos: " + score;
     }
 
     public void SubirContador()
     {
         score += 1;
-        dianasAcertadas.text = "Dianas acertadas " + score.ToString();
+        dianasAcertadas.text = "Aciertos: " + score.ToString();
 
     }
 }
