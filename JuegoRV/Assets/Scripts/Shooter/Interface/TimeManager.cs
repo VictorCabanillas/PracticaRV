@@ -14,13 +14,14 @@ public class TimeManager : MonoBehaviour
     private float restante;
     public bool cuentaActiva;
 
-    private void Awake()
+    
+    public void Restart()
     {
         restante = (minutos * 60) + segundos;
-        
-    }       
+        cuentaActiva = true;
+    }
 
-    // Update is called once per frame
+
     void Update()
     {
         if (cuentaActiva)
@@ -28,7 +29,7 @@ public class TimeManager : MonoBehaviour
             restante -= Time.deltaTime;
             if (restante < 1)
             {
-                cuentaActiva=false; 
+                cuentaActiva = false;
                 uIShooter.TerminarJuego();
             }
             int tempMinutos = Mathf.FloorToInt(restante / 60);

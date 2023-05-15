@@ -26,9 +26,14 @@ public class MainMenu : MonoBehaviour
         canvas.gameObject.SetActive(false);
         uiShooter.EmpezarJuego();
         timePanel.alpha = 1.0f;
-        timeManager.cuentaActiva = true;
+        timeManager.Restart();
 
-        
     }
+
+    public void SalirAlMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
 
 }

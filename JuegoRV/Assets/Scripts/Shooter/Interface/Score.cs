@@ -11,7 +11,7 @@ public class Score : MonoBehaviour
 
     private void Awake()
     {
-        dianasAcertadas.text = "Aciertos: " + score;
+        ResetJuego();
     }
 
     public void SubirContador()
@@ -20,4 +20,10 @@ public class Score : MonoBehaviour
         dianasAcertadas.text = "Aciertos: " + score.ToString();
 
     }
+    public void ResetJuego()
+    {
+        score = 0;
+        dianasAcertadas.text = "Aciertos: " + score; 
+    }
+
 }
