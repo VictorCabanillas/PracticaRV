@@ -9,7 +9,6 @@ public class RecorderProcedural : MonoBehaviour
 {
 
     public GameObject audioRecorder;
-    private AudioInput audioInput;
     private SpawningInfoList cubeRecording = new();
     private int count = 0;
 
@@ -18,61 +17,93 @@ public class RecorderProcedural : MonoBehaviour
     public Transform spawnerAzul;
     public GameObject beatCube;
 
-    [Space] [SerializeField] private InputActionAsset myActionsAsset;
-
     private bool allowCubeR = true;
     private bool allowCubeL = true;
 
-    public float recordingThreshold = 0.65f;
+    public float recordingThreshold = 0.2f;
+
+    bool recarga = true;
+
+
+
+    private float[] samples;
+    int bufferSize;
+    int numBuffers;
+    private AudioSource audioSource;
+    public GameObject sphere;
 
     // Start is called before the first frame update
     void Start()
     {
-        audioInput = audioRecorder.GetComponent<AudioInput>();
+        recordingThreshold = PlayerPrefs.GetFloat("Threshold");
         string selectedSong = PlayerPrefs.GetString("selectedSong");
         CubeInfoPath = Application.streamingAssetsPath + "/CubeInfo/" + selectedSong + ".txt";
-
-        StartCoroutine(timer());
         SceneManager.sceneUnloaded+=OnSceneUnload;
+        AudioSettings.GetDSPBufferSize(out bufferSize,out numBuffers);
+        samples = new float[bufferSize];
+        audioSource = audioRecorder.GetComponent<AudioSource>();
     }
 
-    IEnumerator timer() 
+
+    private float getVolume() 
     {
-        yield return new WaitForSecondsRealtime(1f);
-        //Debug.Log(audioInput.GetAmplitude());
-        //Debug.Log(audioInput.GetFreqBand(2));
-        //if (audioInput.GetAmplitude() > recordingThreshold)
-        if (audioInput.GetFreqBand(2)>recordingThreshold)
+        audioSource.GetOutputData(samples, 0);
+        float sum=0;
+        for (int i = 0; i < bufferSize; i++)
         {
-            calculateSide(Random.Range(0, 10)%2 == 0 ? "Red" : "Blue");
+            sum += samples[i] * samples[i]; // sum squared samples
         }
-        StartCoroutine(timer());
+        sum = Mathf.Sqrt(sum/bufferSize);
+        return sum;
+    }
+
+    private void Update()
+    {
+        float volume = getVolume();
+        Debug.Log(volume);
+        sphere.transform.localScale =new Vector3(volume,volume,volume);
+        if (volume > recordingThreshold && recarga)
+        {
+            recarga = false;
+            StartCoroutine(recargando());
+            Debug.Log("Pop");
+            calculateSide(Random.Range(0, 10) % 2 == 0 ? "Red" : "Blue");
+        }
+    }
+
+    IEnumerator recargando() 
+    {
+        yield return new WaitForSecondsRealtime(0.75f);
+        recarga = true;
     }
 
     void calculateSide(string side)
     {
-        string both = (Random.Range(0, 10) > 4 ? side : "Both");
-        int rotSegment = Random.Range(0, 8);
-        if (rotSegment == 5 || rotSegment == 3) rotSegment = rotSegment==3? rotSegment-1:rotSegment+1;
-        if ((side == "Red"|| both == "Both") && allowCubeL)
+        int rotSegment;
+        bool both = Random.Range(0, 10) < 1 ? true : false;
+        if ((side == "Red"|| both) && allowCubeL)
         {
+            side = "Red";
             allowCubeL = false;
-            StartCoroutine(cooldown(side));
+            do { rotSegment = Random.Range(0, 8); } while (rotSegment == 3 || rotSegment == 5);
             writeCube(rotSegment, side);
+            StartCoroutine(cooldown(true));
         }
-        if ((side == "Blue" || both == "Both") && allowCubeR) 
+        if ((side == "Blue" || both) && allowCubeR) 
         {
+            side = "Blue";
             allowCubeR = false;
-            StartCoroutine(cooldown(side));
+            do { rotSegment = Random.Range(0, 8); } while (rotSegment == 3 || rotSegment == 5);
             writeCube(rotSegment, side);
+            StartCoroutine(cooldown(false));
         }
 
     }
-
-    IEnumerator cooldown(string side)
+    
+    IEnumerator cooldown(bool red)
     {
-        yield return new WaitForSecondsRealtime(0.5f);
-        if (side == "Red")
+        yield return new WaitForSecondsRealtime(1f);
+        if (red)
         {
             allowCubeL = true;
         }
@@ -84,7 +115,7 @@ public class RecorderProcedural : MonoBehaviour
 
     void writeCube(int rotSegment, string side)
     {
-        float tiempo = (float)System.Math.Round((Time.timeSinceLevelLoad - (spawnerAzul.transform.position.z / beatCube.GetComponent<BeatCubeBehaviour>().speed)), 2);
+        float tiempo = (float)System.Math.Round((Time.timeSinceLevelLoad - ((spawnerAzul.transform.position.z- 1f) / beatCube.GetComponent<BeatCubeBehaviour>().speed)), 2);
         SpawningInfo spawnInfo = new SpawningInfo(count, tiempo, rotSegment, side);
         count += 1;
         cubeRecording.list.Add(spawnInfo);
