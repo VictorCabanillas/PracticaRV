@@ -20,6 +20,11 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("Shooter");
     }
 
+    public void EscenaBeatSaber()
+    {
+        SceneManager.LoadScene("SongSelector");
+    }
+
     public void EmpezarJuego()
     {
         XRUI.gameObject.SetActive(false);
@@ -27,7 +32,6 @@ public class MainMenu : MonoBehaviour
         uiShooter.EmpezarJuego();
         timePanel.alpha = 1.0f;
         timeManager.Restart();
-
     }
 
     public void SalirAlMenu()

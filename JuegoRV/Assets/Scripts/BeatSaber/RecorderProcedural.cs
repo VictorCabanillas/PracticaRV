@@ -31,6 +31,7 @@ public class RecorderProcedural : MonoBehaviour
     int numBuffers;
     private AudioSource audioSource;
     public GameObject sphere;
+    public GameObject sphere2;
 
     // Start is called before the first frame update
     void Start()
@@ -62,6 +63,7 @@ public class RecorderProcedural : MonoBehaviour
         float volume = getVolume();
         Debug.Log(volume);
         sphere.transform.localScale =new Vector3(volume,volume,volume);
+        sphere2.transform.localScale = new Vector3(volume, volume, volume);
         if (volume > recordingThreshold && recarga)
         {
             recarga = false;
