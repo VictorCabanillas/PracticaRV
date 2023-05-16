@@ -6,6 +6,10 @@ TagManager:
   tags:
   - FailZone
   - Saber
+  - combo
+  - score
+  - leftControler
+  - rightControler
   layers:
   - Default
   - TransparentFX

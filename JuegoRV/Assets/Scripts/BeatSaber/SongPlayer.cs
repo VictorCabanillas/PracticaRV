@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SongPlayer : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class SongPlayer : MonoBehaviour
         selectedSong = PlayerPrefs.GetString("selectedSong");
         audioPlayer = GetComponent<AudioSource>();
         StartCoroutine(LoadAudio()); //Pido que se reproduzca la cancion elegida
+    }
+    private void Update()
+    {
     }
     private WWW GetAudioFromFile(string path)
     {
@@ -32,5 +36,12 @@ public class SongPlayer : MonoBehaviour
         audioPlayer.clip = audioClip; //Cargo el clip al audioPlayer
         yield return new WaitForSecondsRealtime(4f);
         audioPlayer.Play(); //le doy al play
+        StartCoroutine(endRound());
+    }
+
+    private IEnumerator endRound() 
+    {
+        yield return new WaitForSecondsRealtime(audioPlayer.clip.length+3);
+        SceneManager.LoadScene("EndScreen");
     }
 }
