@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class Recorder : MonoBehaviour
 {
+    //Creacion de variables
     private SpawningInfoList cubeRecording = new();
     private int count = 0;
 
@@ -21,9 +22,9 @@ public class Recorder : MonoBehaviour
     private bool allowCubeR = true;
     private bool allowCubeL = true;
 
-    // Start is called before the first frame update
     void Start()
     {
+        //Asignacion de variables y creacion de callbacks a eventos de los mandos
         string selectedSong = PlayerPrefs.GetString("selectedSong");
         CubeInfoPath = Application.streamingAssetsPath + "/CubeInfo/" + selectedSong + ".txt";
 
@@ -34,6 +35,7 @@ public class Recorder : MonoBehaviour
         rightAction.performed += RightControl;
     }
 
+    //Cuando se mueve el joystick de un mando si no esta en cooldown se crea un cubo en el lado correspondiente al mando
     void LeftContol(InputAction.CallbackContext context)
     {
         if (allowCubeL)
@@ -50,6 +52,8 @@ public class Recorder : MonoBehaviour
             calculateRot(context, "Blue");
         }
     }
+
+    //En funcion de la posicion del joystick se determina la orientacion del cubo
     void calculateRot(InputAction.CallbackContext context, string side)
     {
             Debug.Log(context.ReadValue<Vector2>());
@@ -114,6 +118,7 @@ public class Recorder : MonoBehaviour
         }
     }
 
+    //Se crea el cubo y se añade a la lista
     void writeCube(int rotSegment,string side) 
     {
         float tiempo = (float)System.Math.Round((Time.timeSinceLevelLoad - (spawnerAzul.transform.position.z / beatCube.GetComponent<BeatCubeBehaviour>().speed)), 2);
@@ -122,6 +127,7 @@ public class Recorder : MonoBehaviour
         cubeRecording.list.Add(spawnInfo);
     }
 
+    //Al salir de la escena o finalizar la aplicacion se crea el archivo con los cubos generados
     private void OnApplicationQuit()
     {
         if (!File.Exists(CubeInfoPath))

@@ -7,8 +7,8 @@ using System.Globalization;
 
 public class ButtonBehaviour : MonoBehaviour
 {
+    //Comportamiento de los botones para realizar cambios de escena y paso de informacion entre escenas mediante PlayerPrefs
     public TMP_InputField inputField;
-
     private void Start()
     {
         Debug.Log(PlayerPrefs.GetFloat("Threshold").ToString(CultureInfo.InvariantCulture));

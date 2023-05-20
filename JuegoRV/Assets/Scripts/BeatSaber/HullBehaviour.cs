@@ -4,16 +4,10 @@ using UnityEngine;
 
 public class HullBehaviour : MonoBehaviour
 {
-    // Start is called before the first frame update
+    //Destruye las mitades pasado unos segundos
     void Start()
     {
         StartCoroutine(destroyAfterTime());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     IEnumerator destroyAfterTime() 

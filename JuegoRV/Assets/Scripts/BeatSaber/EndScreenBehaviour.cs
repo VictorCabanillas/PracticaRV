@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class EndScreenBehaviour : MonoBehaviour
 {
+    //Comportamiento de la pantalla final para mostrar los puntos y gestionar el funcionamiento de los botones
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI comboText;
-    // Start is called before the first frame update
     void Start()
     {
         scoreText.text = PlayerPrefs.GetInt("Score").ToString();
