@@ -5,6 +5,7 @@ using TMPro;
 
 public class ScoreBehaviour : MonoBehaviour
 {
+    //muestra la informacion de la puntuacion en pantalla
     TextMeshProUGUI text;
     int score = 0;
     private void Start()

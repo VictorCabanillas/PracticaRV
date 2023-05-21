@@ -4,6 +4,7 @@ using UnityEngine;
 
 public interface IPooledObject
 {
+    //Interfaz IPooledObject
     public bool Active
     {
             get;

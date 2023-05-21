@@ -5,6 +5,7 @@ using TMPro;
 
 public class ComboBehaviour : MonoBehaviour
 {
+    //Creacion de variables
     ScoreBehaviour score;
     TextMeshProUGUI text;
     public GameObject multiplyerGO;
@@ -13,6 +14,7 @@ public class ComboBehaviour : MonoBehaviour
     int multiplyer=1;
     private void Start()
     {
+        //Asignacion de variables
         PlayerPrefs.SetInt("highestCombo", 0);
         text = GetComponent<TextMeshProUGUI>();
         score = GameObject.FindGameObjectWithTag("score").GetComponent<ScoreBehaviour>();
@@ -21,6 +23,7 @@ public class ComboBehaviour : MonoBehaviour
 
     public void addCombo() 
     {
+        //Suma uno al combo al cortar un cubo, actualiza el multiplicador y suma la puntuacion
         combo += 1;
         calculateMultiplyer();
         multiplyerText.text = "x"+ multiplyer.ToString();
@@ -30,12 +33,14 @@ public class ComboBehaviour : MonoBehaviour
     }
     public void resetCombo()
     {
+        //Resetea el combo y el multiplicador
         combo = 0;
         multiplyer = 1;
         text.text = combo.ToString();
     }
     void calculateMultiplyer() 
     {
+        //Asigna el valor del multiplicador
         switch (combo) 
         {
             case 2:
