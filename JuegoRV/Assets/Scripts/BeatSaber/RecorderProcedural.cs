@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class RecorderProcedural : MonoBehaviour
 {
-
+    //Creacion de variables
     public GameObject audioRecorder;
     private SpawningInfoList cubeRecording = new();
     private int count = 0;
@@ -36,6 +36,7 @@ public class RecorderProcedural : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Asignacion de variables y eventos
         recordingThreshold = PlayerPrefs.GetFloat("Threshold");
         string selectedSong = PlayerPrefs.GetString("selectedSong");
         CubeInfoPath = Application.streamingAssetsPath + "/CubeInfo/" + selectedSong + ".txt";
@@ -48,6 +49,7 @@ public class RecorderProcedural : MonoBehaviour
 
     private float getVolume() 
     {
+        //Calculamos el RMS obteniendo las samples del audio sumandolas y dividiendo entre la cantidad de samples
         audioSource.GetOutputData(samples, 0);
         float sum=0;
         for (int i = 0; i < bufferSize; i++)
@@ -60,6 +62,7 @@ public class RecorderProcedural : MonoBehaviour
 
     private void Update()
     {
+        //Calculamos el RMS y lo utilizamos para determinar la escala de las esferas asi como si generar un cubo si supera el umbral
         float volume = getVolume();
         Debug.Log(volume);
         sphere.transform.localScale =new Vector3(volume,volume,volume);
@@ -69,18 +72,20 @@ public class RecorderProcedural : MonoBehaviour
             recarga = false;
             StartCoroutine(recargando());
             Debug.Log("Pop");
-            calculateSide(Random.Range(0, 10) % 2 == 0 ? "Red" : "Blue");
+            calculateSide(Random.Range(0, 10) % 2 == 0 ? "Red" : "Blue"); //Mandamos crear un cubo
         }
     }
 
     IEnumerator recargando() 
     {
+        //Activamos el cooldown de los cubos
         yield return new WaitForSecondsRealtime(0.75f);
         recarga = true;
     }
 
     void calculateSide(string side)
     {
+        //Segun el lado o si se decide que sea en ambos lados, calculamos una rotacion aleatoria y mandamos a generar un cubo
         int rotSegment;
         bool both = Random.Range(0, 10) < 1 ? true : false;
         if ((side == "Red"|| both) && allowCubeL)
@@ -104,6 +109,7 @@ public class RecorderProcedural : MonoBehaviour
     
     IEnumerator cooldown(bool red)
     {
+        //Cooldown entre cubos del mismo color
         yield return new WaitForSecondsRealtime(1f);
         if (red)
         {
@@ -117,12 +123,15 @@ public class RecorderProcedural : MonoBehaviour
 
     void writeCube(int rotSegment, string side)
     {
+        //Añadimos el cubo a la lista
         float tiempo = (float)System.Math.Round((Time.timeSinceLevelLoad - ((spawnerAzul.transform.position.z- 1f) / beatCube.GetComponent<BeatCubeBehaviour>().speed)), 2);
         SpawningInfo spawnInfo = new SpawningInfo(count, tiempo, rotSegment, side);
         count += 1;
         cubeRecording.list.Add(spawnInfo);
     }
 
+
+    //Al finalizar la escena o la aplicacion generamos el archivo si no existia
     private void OnSceneUnload(Scene current) 
     {
         if (!File.Exists(CubeInfoPath))

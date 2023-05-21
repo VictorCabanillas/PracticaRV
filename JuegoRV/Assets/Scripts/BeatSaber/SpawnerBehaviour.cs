@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class SpawnerBehaviour : MonoBehaviour
 {
+    //Creacion de variables
     public Transform spawnerRojo;
     public Transform spawnerAzul;
     public GameObject beatCube;
@@ -16,6 +17,7 @@ public class SpawnerBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //asignacion de variables
         selectedSong = PlayerPrefs.GetString("selectedSong");
         cubePool = new ObjectPool(beatCube.GetComponent<BeatCubeBehaviour>(), 10, true);
         string CubeInfoPath = Application.streamingAssetsPath + "/CubeInfo/" + selectedSong +".txt";
@@ -28,17 +30,18 @@ public class SpawnerBehaviour : MonoBehaviour
     #region Lectura JSON
     public void inputJSON(string path)  //import del json
     {
+        //Leemos la lista de cubos del json
         string json = File.ReadAllText(path);
         SpawningInfoList RecordingList = JsonUtility.FromJson<SpawningInfoList>(json);
         spawningQueue = RecordingList.list;
     }
     #endregion
 
-    // Update is called once per frame
     void Update()
     {
         if (spawningQueue.Count > 0) //Spawneo de cubos
         {
+            //Se spawnean los cubos cuando toca con los datos asociados
             if (Time.timeSinceLevelLoad >= spawningQueue[0].timeToSpawn)
             {
                     BeatCubeBehaviour spawnedCube;

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SongPlayer : MonoBehaviour
 {
+    //Creacion de variables
     private AudioSource audioPlayer;
     private AudioClip audioClip;
     private string selectedSong;
@@ -12,16 +13,15 @@ public class SongPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Asignacion de variables
         selectedSong = PlayerPrefs.GetString("selectedSong");
         audioPlayer = GetComponent<AudioSource>();
         StartCoroutine(LoadAudio()); //Pido que se reproduzca la cancion elegida
     }
-    private void Update()
-    {
-    }
+
     private WWW GetAudioFromFile(string path)
     {
-        WWW request = new WWW(path);
+        WWW request = new WWW(path); //"Descargo" el archivo para convertirlo a audioclip
         return request;
     }
 
@@ -36,12 +36,12 @@ public class SongPlayer : MonoBehaviour
         audioPlayer.clip = audioClip; //Cargo el clip al audioPlayer
         yield return new WaitForSecondsRealtime(4f);
         audioPlayer.Play(); //le doy al play
-        StartCoroutine(endRound());
+        StartCoroutine(endRound());//Inicio una cuenta hasta el final de la cancion para cargar el final
     }
 
     private IEnumerator endRound() 
     {
         yield return new WaitForSecondsRealtime(audioPlayer.clip.length+3);
-        SceneManager.LoadScene("EndScreen");
+        SceneManager.LoadScene("EndScreen");//Finalizo la partida al final de la cancion
     }
 }

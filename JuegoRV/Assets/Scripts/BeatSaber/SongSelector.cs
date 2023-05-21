@@ -8,7 +8,6 @@ public class SongSelector : MonoBehaviour
 {
     private TMP_Dropdown desplegable;
     FileInfo[] info;
-    // Start is called before the first frame update
     void Awake()
     {
         desplegable = GetComponent<TMP_Dropdown>();
@@ -28,6 +27,6 @@ public class SongSelector : MonoBehaviour
 
     void DropdownValueChanged(TMP_Dropdown change) 
     {
-        PlayerPrefs.SetString("selectedSong", desplegable.options[desplegable.value].text);
+        PlayerPrefs.SetString("selectedSong", desplegable.options[desplegable.value].text); //almaceno la cancion elegida para usarla en otras escenas
     }
 }
