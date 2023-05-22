@@ -9,6 +9,8 @@ public class DianaManager : MonoBehaviour
     public List<Diana> dianasActivas;
     public List<Diana> dianasDesactivadas;
 
+    //Establecemos cual va a ser la diana activa en función del número de diana que se ubiquen en el escenario, activando un total de dianas en función de las 
+    //especificadas en el inspector
     private void Update()
     {
         if(dianasActivas.Count != MaxDianas)

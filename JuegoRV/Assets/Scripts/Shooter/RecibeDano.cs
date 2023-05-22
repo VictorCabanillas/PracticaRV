@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+
+//SCRIPT DESECHADO YA QUE LAS DIANA FINALMENTE NO TIENEN VIDA
+
 [RequireComponent(typeof(Rigidbody))]
 
 public class RecibeDaño : MonoBehaviour, IRecibeDano

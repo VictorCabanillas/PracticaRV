@@ -9,12 +9,14 @@ public class Diana : MonoBehaviour
     public UnityEvent OnDesactivar;
     public bool Activada;
 
+    //Llamamos al activar las dianas
     public void Activar()
     {
         Activada = true;
         OnActivar.Invoke();
     }
 
+    //Cuando se desactivan las dianas, vamos actualizando el contador y eliminando y añadiendo cada una de ellas
     public void Desactivar()
     {
         Activada = false;
@@ -28,6 +30,7 @@ public class Diana : MonoBehaviour
         score.SubirContador();
     }
 
+    //Método para que si golpeamos una en el estado "activada" , se desactiva
     public void Golpear()
     {
         if(Activada)

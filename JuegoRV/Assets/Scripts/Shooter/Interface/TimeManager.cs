@@ -14,14 +14,14 @@ public class TimeManager : MonoBehaviour
     private float restante;
     public bool cuentaActiva;
 
-    
+    //Cuenta atrás segun el tiempo especificado en el inspector
     public void Restart()
     {
         restante = (minutos * 60) + segundos;
         cuentaActiva = true;
     }
 
-
+    //Actualizamos el contador por cada segundo que pase
     void Update()
     {
         if (cuentaActiva)

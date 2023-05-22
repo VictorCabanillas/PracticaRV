@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
+//Script que hace referencia a las animaciones del modelo de las manos (Visto en clase)
 public class ControlMano : MonoBehaviour
 {
     [SerializeField] InputActionReference actionGrip;

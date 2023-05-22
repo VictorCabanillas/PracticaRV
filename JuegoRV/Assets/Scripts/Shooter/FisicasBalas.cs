@@ -26,10 +26,11 @@ public class FisicasBalas : Balas
     public override void Launch()
     {
         base.Launch();
-        rigiBody.AddRelativeForce(Vector3.forward * arma.GetFuerzaDisparo(), ForceMode.Impulse);
+        rigiBody.AddRelativeForce(Vector3.forward * arma.GetFuerzaDisparo(), ForceMode.Impulse); //Formula que aplica la fuerza a la bala con los parametros dados
     }
 
-    //En caso de colision de la bala con algún collider establecido como pueden ser los enemigos, el objeto se destruye
+    //En caso de colision de la bala con algún collider establecido como pueden ser los enemigos, el objeto se destruye aunque realmente no se acabó utilizando ya 
+    //que el tema de activar y desactivar con los coques lo llevan las dianas
     private void OnTriggerEnter(Collider other)
     {
         var bala = GetComponent<Balas>();

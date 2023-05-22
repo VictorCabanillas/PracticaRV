@@ -2240,7 +2240,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &335870866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2954,7 +2954,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minutos: 0
-  segundos: 5
+  segundos: 45
   tiempo: {fileID: 466087139}
   uIShooter: {fileID: 28961208}
   cuentaActiva: 0
@@ -5480,7 +5480,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3358343172736901281, guid: 4e7d4533e8060cd438219e72c0cab291, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e7d4533e8060cd438219e72c0cab291, type: 3}
@@ -8439,7 +8439,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &1435206468
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11165,7 +11165,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3358343172736901281, guid: 4e7d4533e8060cd438219e72c0cab291, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e7d4533e8060cd438219e72c0cab291, type: 3}
@@ -14809,7 +14809,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5395106332326514826
 Transform:
   m_ObjectHideFlags: 0

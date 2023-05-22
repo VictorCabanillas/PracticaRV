@@ -15,7 +15,7 @@ public class EsconderMano : MonoBehaviour
         mallas = GetComponentsInChildren<MeshRenderer>();
     }
 
-    //Se muestra el objeto (mano)
+    //Se muestra el objeto (mano) en caso de no estar agarrando algo
     public void Mostrar()
     {
         foreach(var malla in mallas)
@@ -24,7 +24,7 @@ public class EsconderMano : MonoBehaviour
         }
     }
 
-    //Se esconde el objeto (mano)
+    //Se esconde el objeto (mano) en caso de agarralo
     public void Esconder()
     {
         foreach(var malla in mallas)
