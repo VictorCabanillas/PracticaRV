@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] UIShooter uiShooter;
     [SerializeField] XROrigin XRUI;
+    [SerializeField] XROrigin XRShooter;
     [SerializeField] Canvas canvas;
 
     [SerializeField] TimeManager timeManager;
@@ -27,7 +28,7 @@ public class MainMenu : MonoBehaviour
 
     public void EmpezarJuego()
     {
-        XRUI.gameObject.SetActive(false);
+        XRUI.gameObject.SetActive(true);
         canvas.gameObject.SetActive(false);
         uiShooter.EmpezarJuego();
         timePanel.alpha = 1.0f;
@@ -36,6 +37,8 @@ public class MainMenu : MonoBehaviour
 
     public void SalirAlMenu()
     {
+        XRShooter.gameObject.SetActive(false) ;
+        XRUI.gameObject.SetActive(false) ;
         SceneManager.LoadScene("MainMenu");
     }
 

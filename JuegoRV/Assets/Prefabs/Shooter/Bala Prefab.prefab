@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5500270496050228668}
   - component: {fileID: -2326603527347270746}
   - component: {fileID: 7180398444225108006}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bala Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
