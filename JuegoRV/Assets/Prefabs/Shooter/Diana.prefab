@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 152517368557912662}
   - component: {fileID: 152517368557912663}
   - component: {fileID: 3084482929345312854}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Diana
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 152517369986822497}
   - component: {fileID: 152517369986822495}
   - component: {fileID: 152517369986822496}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}

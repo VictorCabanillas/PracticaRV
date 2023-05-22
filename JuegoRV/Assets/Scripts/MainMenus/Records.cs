@@ -53,7 +53,7 @@ public class Records : MonoBehaviour
     }
     public void CerrarRecords()
     {
-        XRUI.gameObject.SetActive(false);
+        
         gameObject.SetActive(false);
 
     }
