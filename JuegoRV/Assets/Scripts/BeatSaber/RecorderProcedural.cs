@@ -33,6 +33,8 @@ public class RecorderProcedural : MonoBehaviour
     public GameObject sphere;
     public GameObject sphere2;
 
+    public bool canRecord = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -131,10 +133,10 @@ public class RecorderProcedural : MonoBehaviour
     }
 
 
-    //Al finalizar la escena o la aplicacion generamos el archivo si no existia
+    //Al finalizar la escena o la aplicacion generamos el archivo si no existia y si se permite que grabe
     private void OnSceneUnload(Scene current) 
     {
-        if (!File.Exists(CubeInfoPath))
+        if (!File.Exists(CubeInfoPath) && canRecord)
         {
             outputJSON(CubeInfoPath, cubeRecording);
         }
@@ -142,7 +144,7 @@ public class RecorderProcedural : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        if (!File.Exists(CubeInfoPath))
+        if (!File.Exists(CubeInfoPath)&&canRecord)
         {
             outputJSON(CubeInfoPath, cubeRecording);
         }
